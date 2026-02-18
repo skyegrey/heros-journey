@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnx46umktrgpm"]
+
+[ext_resource type="Script" uid="uid://b6t5ottxesspb" path="res://scripts/recruitable_hero_control.gd" id="1_5rn1i"]
+[ext_resource type="Texture2D" uid="uid://dg7b5nkmqersk" path="res://assets/hero-container-background.png" id="1_e1w70"]
+[ext_resource type="Texture2D" uid="uid://b3ojh1e7kmvnh" path="res://assets/reina.png" id="2_5rn1i"]
+
+[node name="RecruitableHeroControl" type="Control"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 100.0
+script = ExtResource("1_5rn1i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e1w70")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 14.0
+offset_right = 82.0
+offset_bottom = 82.0
+texture = ExtResource("2_5rn1i")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 67.0
+offset_right = 297.0
+offset_bottom = 98.0
+text = "Recruit"
+
+[node name="NameLevelTextControl" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 84.0
+offset_top = 8.0
+offset_right = 287.0
+offset_bottom = 31.0
+
+[node name="NameText" type="Label" parent="NameLevelTextControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Reputation Req: "
+metadata/_edit_lock_ = true
+
+[node name="LevelText" type="Label" parent="NameLevelTextControl"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Lv 7"
+metadata/_edit_lock_ = true
+
+[node name="GoldCostTextControl" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 86.0
+offset_top = 46.0
+offset_right = 289.0
+offset_bottom = 69.0
+
+[node name="TextLabel" type="Label" parent="GoldCostTextControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Gold Cost"
+metadata/_edit_lock_ = true
+
+[node name="GoldCostText" type="Label" parent="GoldCostTextControl"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.8156863, 0.6039216, 0, 1)
+text = "367"
+metadata/_edit_lock_ = true

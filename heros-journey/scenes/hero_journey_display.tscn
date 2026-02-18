@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhufx6nhqm5xm"]
+
+[ext_resource type="Script" uid="uid://domma3evad7ao" path="res://scripts/hero_journey.gd" id="1_hjrgf"]
+[ext_resource type="Texture2D" uid="uid://diapi5ib7s76r" path="res://assets/journey-path.png" id="2_tqxom"]
+[ext_resource type="Texture2D" uid="uid://b3ojh1e7kmvnh" path="res://assets/reina.png" id="3_1tdqh"]
+
+[node name="HeroJourneyDisplay" type="Control"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 100.0
+script = ExtResource("1_hjrgf")
+
+[node name="JourneyPath" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 47.0
+offset_right = 368.0
+offset_bottom = 72.0
+texture = ExtResource("2_tqxom")
+
+[node name="Reina" type="Sprite2D" parent="."]
+position = Vector2(68, 58)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_1tdqh")
+offset = Vector2(0, -16)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(68, 58)
+
+[node name="EndPosition" type="Marker2D" parent="."]
+position = Vector2(316, 58)

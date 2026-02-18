@@ -1,0 +1,202 @@
+[gd_scene load_steps=5 format=3 uid="uid://sp0w2rrlaiwg"]
+
+[ext_resource type="Script" uid="uid://bo7yx58yd5052" path="res://scripts/hero_listing.gd" id="1_tul7u"]
+[ext_resource type="Texture2D" uid="uid://dg7b5nkmqersk" path="res://assets/hero-container-background.png" id="2_an1op"]
+[ext_resource type="Texture2D" uid="uid://b3ojh1e7kmvnh" path="res://assets/reina.png" id="3_xhorr"]
+[ext_resource type="Texture2D" uid="uid://bym4u7ru5xhil" path="res://assets/hero-container-background-dark.png" id="4_an1op"]
+
+[node name="HeroControl" type="Control"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tul7u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_an1op")
+
+[node name="HeroContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 125)
+layout_mode = 1
+offset_right = 400.0
+offset_bottom = 125.0
+
+[node name="HeroInformation" type="HBoxContainer" parent="HeroContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HeroContainer/HeroInformation"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 17
+theme_override_constants/margin_bottom = 17
+
+[node name="CharacterPortrait" type="TextureRect" parent="HeroContainer/HeroInformation/MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_xhorr")
+expand_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HeroContainer/HeroInformation"]
+layout_mode = 2
+
+[node name="CharacterTextContainer" type="Control" parent="HeroContainer/HeroInformation/MarginContainer2"]
+layout_mode = 2
+
+[node name="HPLabel" type="Label" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+layout_mode = 1
+offset_left = -13.0
+offset_top = 14.0
+offset_right = 49.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 12
+text = "HP: 100/100"
+
+[node name="Label2" type="Label" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 249.0
+offset_top = 13.0
+offset_right = 276.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "Lv. 1"
+
+[node name="ProgressBar" type="ProgressBar" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = 34.0
+offset_right = 278.0
+offset_bottom = 48.0
+value = 100.0
+show_percentage = false
+
+[node name="Label3" type="Label" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 63.0
+offset_right = 210.0
+offset_bottom = 86.0
+
+[node name="HeroMenuContainer" type="Control" parent="HeroContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HeroContainer/HeroMenuContainer"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 116.0
+offset_bottom = 35.0
+text = "Stats"
+
+[node name="Button2" type="Button" parent="HeroContainer/HeroMenuContainer"]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 4.0
+offset_right = 253.0
+offset_bottom = 35.0
+text = "Gear"
+
+[node name="JourneyButton" type="Button" parent="HeroContainer/HeroMenuContainer"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 3.0
+offset_right = 385.0
+offset_bottom = 34.0
+text = "Journey"
+
+[node name="StatsPage" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 150.0
+offset_right = 400.0
+offset_bottom = 286.0
+
+[node name="TextureRect" type="TextureRect" parent="StatsPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_an1op")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="StatLabelContainer" type="Control" parent="StatsPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsPage/StatLabelContainer"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 11.0
+offset_right = 178.0
+offset_bottom = 115.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsPage/StatLabelContainer/HBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Max HP: "
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Attack: "
+metadata/_edit_lock_ = true
+
+[node name="Label3" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Defense: "
+metadata/_edit_lock_ = true
+
+[node name="Label4" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Speed: "
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatsPage/StatLabelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="MaxHPLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="AttackLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="DefenseLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="SpeedLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true

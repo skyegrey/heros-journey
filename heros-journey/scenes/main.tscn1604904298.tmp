@@ -1,0 +1,173 @@
+[gd_scene load_steps=12 format=3 uid="uid://uc3dvfcsl3v6"]
+
+[ext_resource type="Script" uid="uid://evgw8kbgblgv" path="res://scripts/main.gd" id="1_85g3d"]
+[ext_resource type="Script" uid="uid://bhhwwdbeajmsc" path="res://scripts/hero_manager.gd" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://c0c4rdt2vxstb" path="res://scripts/guild_inventory.gd" id="2_choun"]
+[ext_resource type="Script" uid="uid://dyxr463lwsbx5" path="res://scripts/hero.gd" id="2_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://b3ojh1e7kmvnh" path="res://assets/reina.png" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://b174saxwm6qdg" path="res://scripts/tavern_page_control.gd" id="3_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://diapi5ib7s76r" path="res://assets/journey-path.png" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://cjdybm28cjgrc" path="res://scenes/heros_list_control.gd" id="4_ya4ey"]
+[ext_resource type="Script" uid="uid://dagh8h87tx4if" path="res://scripts/guild_menu.gd" id="5_choun"]
+[ext_resource type="Script" uid="uid://domma3evad7ao" path="res://scripts/hero_journey.gd" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://cdx0y60apqr06" path="res://scripts/tavern.gd" id="11_ya4ey"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_85g3d")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1200.0
+offset_bottom = 800.0
+
+[node name="GuildMenu" type="Control" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 800.0
+script = ExtResource("5_choun")
+
+[node name="TavernPageControl" type="Control" parent="UI/GuildMenu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_eb6dy")
+
+[node name="GoldLabel" type="Label" parent="UI/GuildMenu/TavernPageControl"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 21.0
+offset_right = 201.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0.8161652, 0.6024417, 5.7756904e-07, 1)
+theme_override_font_sizes/font_size = 32
+text = "12,356 g"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TavernListingContainer" type="VBoxContainer" parent="UI/GuildMenu/TavernPageControl"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 156.0
+offset_right = 352.0
+offset_bottom = 640.0
+
+[node name="GuildInfoPage" type="Control" parent="UI/GuildMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GoldLabel" type="Label" parent="UI/GuildMenu/GuildInfoPage"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 133.0
+offset_right = 379.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.8161652, 0.6024417, 5.7756904e-07, 1)
+theme_override_font_sizes/font_size = 48
+text = "12,356 g"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReputationLabel" type="Label" parent="UI/GuildMenu/GuildInfoPage"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 190.0
+offset_right = 381.0
+offset_bottom = 257.0
+theme_override_colors/font_color = Color(0, 0.8117647, 0.972549, 1)
+theme_override_font_sizes/font_size = 32
+text = "256 rep"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TavernButton" type="Button" parent="UI/GuildMenu"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 738.0
+offset_right = 386.0
+offset_bottom = 777.0
+text = "Tavern"
+
+[node name="GuildHallButton" type="Button" parent="UI/GuildMenu"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 740.0
+offset_right = 201.0
+offset_bottom = 777.0
+text = "Guild Hall"
+
+[node name="HerosListControl" type="Control" parent="UI"]
+anchors_preset = 0
+offset_left = 400.0
+offset_right = 800.0
+offset_bottom = 800.0
+script = ExtResource("4_ya4ey")
+
+[node name="HerosListVBox" type="VBoxContainer" parent="UI/HerosListControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 1.0
+offset_right = 14.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JourneyDisplay" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 816.0
+offset_right = 1200.0
+grow_vertical = 2
+
+[node name="HeroJourneyDisplay" type="Control" parent="UI/JourneyDisplay"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 401.0
+offset_bottom = 109.0
+script = ExtResource("6_o6xl0")
+
+[node name="JourneyPath" type="TextureRect" parent="UI/JourneyDisplay/HeroJourneyDisplay"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 82.0
+offset_right = 391.0
+offset_bottom = 107.0
+texture = ExtResource("3_jyhfs")
+
+[node name="Reina" type="Sprite2D" parent="UI/JourneyDisplay/HeroJourneyDisplay"]
+position = Vector2(91, 93)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_sugp2")
+offset = Vector2(0, -16)
+
+[node name="StartPosition" type="Marker2D" parent="UI/JourneyDisplay/HeroJourneyDisplay"]
+position = Vector2(91, 93)
+
+[node name="EndPosition" type="Marker2D" parent="UI/JourneyDisplay/HeroJourneyDisplay"]
+position = Vector2(339, 93)
+
+[node name="GuildInventory" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_choun")
+
+[node name="HeroManager" type="Node" parent="."]
+script = ExtResource("1_tefeu")
+
+[node name="Hero" type="Node" parent="HeroManager"]
+unique_name_in_owner = true
+script = ExtResource("2_o6xl0")
+
+[node name="Tavern" type="Node" parent="."]
+script = ExtResource("11_ya4ey")
