@@ -1,19 +1,16 @@
-class_name HeroResource extends Node
+class_name HeroResource extends CharacterResource
 
 @export var hero_name: String
 
-@export var max_hp: int
-@export var current_hp: int
-
-@export var attack: int
-@export var defense: int
-@export var speed: int
-
 func _init(_hero_name: String):
+	super()
 	hero_name = _hero_name
-	max_hp = randi_range(10, 20)
+	level_up()
+
+func level_up():
+	max_hp += randi_range(5, 10)
 	current_hp = max_hp
 	
-	attack = randi_range(1, 10)
-	defense = randi_range(1, 10)
-	speed = randi_range(1, 10)
+	attack = randi_range(1, 3)
+	defense = randi_range(1, 3)
+	speed = randi_range(1, 3)

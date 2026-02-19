@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhufx6nhqm5xm"]
+[gd_scene load_steps=7 format=3 uid="uid://bhufx6nhqm5xm"]
 
 [ext_resource type="Script" uid="uid://domma3evad7ao" path="res://scripts/hero_journey.gd" id="1_hjrgf"]
 [ext_resource type="Texture2D" uid="uid://diapi5ib7s76r" path="res://assets/journey-path.png" id="2_tqxom"]
 [ext_resource type="Texture2D" uid="uid://b3ojh1e7kmvnh" path="res://assets/reina.png" id="3_1tdqh"]
+[ext_resource type="Texture2D" uid="uid://5tkdvm50657e" path="res://assets/enemies/goblin.png" id="4_tqxom"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqxom"]
+bg_color = Color(0.17254902, 0.17254902, 0.17254902, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tdqh"]
+bg_color = Color(0.38039216, 0, 0, 1)
 
 [node name="HeroJourneyDisplay" type="Control"]
 custom_minimum_size = Vector2(400, 100)
@@ -20,8 +27,8 @@ offset_right = 368.0
 offset_bottom = 72.0
 texture = ExtResource("2_tqxom")
 
-[node name="Reina" type="Sprite2D" parent="."]
-position = Vector2(68, 58)
+[node name="HeroSprite" type="Sprite2D" parent="."]
+position = Vector2(110, 59)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_1tdqh")
 offset = Vector2(0, -16)
@@ -31,3 +38,27 @@ position = Vector2(68, 58)
 
 [node name="EndPosition" type="Marker2D" parent="."]
 position = Vector2(316, 58)
+
+[node name="BattleHeroPosition" type="Marker2D" parent="."]
+position = Vector2(111, 58)
+
+[node name="BattleEnemyPosition" type="Marker2D" parent="."]
+position = Vector2(262, 58)
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(262, 34)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_tqxom")
+
+[node name="EnemyHpBar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 19.0
+offset_top = 72.0
+offset_right = 322.0
+offset_bottom = 82.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tqxom")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1tdqh")
+value = 100.0
+show_percentage = false

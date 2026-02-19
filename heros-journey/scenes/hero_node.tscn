@@ -4,3 +4,5 @@
 
 [node name="HeroNode" type="Node"]
 script = ExtResource("1_jqowb")
+
+[node name="Enemy" type="Node" parent="."]
