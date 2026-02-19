@@ -1,19 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://sp0w2rrlaiwg"]
+[gd_scene load_steps=6 format=3 uid="uid://sp0w2rrlaiwg"]
 
 [ext_resource type="Script" uid="uid://bo7yx58yd5052" path="res://scripts/hero_listing.gd" id="1_tul7u"]
 [ext_resource type="Texture2D" uid="uid://dg7b5nkmqersk" path="res://assets/hero-container-background.png" id="2_an1op"]
 [ext_resource type="Texture2D" uid="uid://b3ojh1e7kmvnh" path="res://assets/reina.png" id="3_xhorr"]
 [ext_resource type="Texture2D" uid="uid://bym4u7ru5xhil" path="res://assets/hero-container-background-dark.png" id="4_an1op"]
+[ext_resource type="PackedScene" uid="uid://cicgpj1w488po" path="res://scenes/gear_cell.tscn" id="5_xhorr"]
 
 [node name="HeroControl" type="Control"]
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 400.0
-offset_bottom = 287.0
+anchor_right = 0.333
+anchor_bottom = 0.187
+offset_right = 0.3999939
+offset_bottom = 0.3999939
 script = ExtResource("1_tul7u")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HeroContainer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HeroContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,17 +37,21 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_an1op")
 
-[node name="HeroContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 125)
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HeroContainer"]
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 1
-offset_right = 400.0
-offset_bottom = 125.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="HeroInformation" type="HBoxContainer" parent="HeroContainer"]
+[node name="HeroInformation" type="HBoxContainer" parent="VBoxContainer/HeroContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 100)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HeroContainer/HeroInformation"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_constants/margin_left = 17
@@ -40,19 +59,20 @@ theme_override_constants/margin_top = 17
 theme_override_constants/margin_right = 17
 theme_override_constants/margin_bottom = 17
 
-[node name="CharacterPortrait" type="TextureRect" parent="HeroContainer/HeroInformation/MarginContainer"]
+[node name="CharacterPortrait" type="TextureRect" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation/MarginContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("3_xhorr")
 expand_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="HeroContainer/HeroInformation"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation"]
 layout_mode = 2
 
-[node name="CharacterTextContainer" type="Control" parent="HeroContainer/HeroInformation/MarginContainer2"]
+[node name="CharacterTextContainer" type="Control" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation/MarginContainer2"]
 layout_mode = 2
 
-[node name="HPLabel" type="Label" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+[node name="HPLabel" type="Label" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = -13.0
 offset_top = 14.0
@@ -61,7 +81,7 @@ offset_bottom = 31.0
 theme_override_font_sizes/font_size = 12
 text = "HP: 100/100"
 
-[node name="Label2" type="Label" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -74,7 +94,8 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 12
 text = "Lv. 1"
 
-[node name="ProgressBar" type="ProgressBar" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+[node name="HpBar" type="ProgressBar" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -14.0
 offset_top = 34.0
@@ -83,17 +104,19 @@ offset_bottom = 48.0
 value = 100.0
 show_percentage = false
 
-[node name="Label3" type="Label" parent="HeroContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroInformation/MarginContainer2/CharacterTextContainer"]
 layout_mode = 0
 offset_left = 59.0
 offset_top = 63.0
 offset_right = 210.0
 offset_bottom = 86.0
 
-[node name="HeroMenuContainer" type="Control" parent="HeroContainer"]
+[node name="HeroMenuContainer" type="Control" parent="VBoxContainer/HeroContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 
-[node name="StatsButton" type="Button" parent="HeroContainer/HeroMenuContainer"]
+[node name="StatsButton" type="Button" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroMenuContainer"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 14.0
 offset_top = 4.0
@@ -101,7 +124,8 @@ offset_right = 116.0
 offset_bottom = 35.0
 text = "Stats"
 
-[node name="Button2" type="Button" parent="HeroContainer/HeroMenuContainer"]
+[node name="GearButton" type="Button" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroMenuContainer"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 151.0
 offset_top = 4.0
@@ -109,7 +133,8 @@ offset_right = 253.0
 offset_bottom = 35.0
 text = "Gear"
 
-[node name="JourneyButton" type="Button" parent="HeroContainer/HeroMenuContainer"]
+[node name="JourneyButton" type="Button" parent="VBoxContainer/HeroContainer/VBoxContainer/HeroMenuContainer"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 283.0
 offset_top = 3.0
@@ -117,14 +142,13 @@ offset_right = 385.0
 offset_bottom = 34.0
 text = "Journey"
 
-[node name="StatsPage" type="Control" parent="."]
+[node name="StatsPage" type="Control" parent="VBoxContainer"]
+unique_name_in_owner = true
 visible = false
-anchors_preset = 0
-offset_top = 150.0
-offset_right = 400.0
-offset_bottom = 300.0
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="StatsPage"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/StatsPage"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -135,7 +159,7 @@ texture = ExtResource("4_an1op")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="StatLabelContainer" type="Control" parent="StatsPage"]
+[node name="StatLabelContainer" type="Control" parent="VBoxContainer/StatsPage"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,62 +168,110 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StatsPage/StatLabelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/StatsPage/StatLabelContainer"]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 23.0
 offset_right = 176.0
 offset_bottom = 127.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="StatsPage/StatLabelContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer"]
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Max HP: "
 metadata/_edit_lock_ = true
 
-[node name="Label2" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Attack: "
 metadata/_edit_lock_ = true
 
-[node name="Label3" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Defense: "
 metadata/_edit_lock_ = true
 
-[node name="Label4" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Speed: "
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="StatsPage/StatLabelContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="MaxHPLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+[node name="MaxHPLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
-[node name="AttackLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+[node name="AttackLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
-[node name="DefenseLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+[node name="DefenseLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
-[node name="SpeedLabel" type="Label" parent="StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+[node name="SpeedLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
+
+[node name="GearPage" type="Control" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/GearPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_an1op")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ArmorCell" parent="VBoxContainer/GearPage" instance=ExtResource("5_xhorr")]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 63.0
+offset_right = 139.0
+offset_bottom = 127.0
+
+[node name="WeaponCell" parent="VBoxContainer/GearPage" instance=ExtResource("5_xhorr")]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 65.0
+offset_right = 322.0
+offset_bottom = 129.0
+
+[node name="Label" type="Label" parent="VBoxContainer/GearPage"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 41.0
+offset_right = 139.0
+offset_bottom = 64.0
+text = "Armor"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/GearPage"]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 43.0
+offset_right = 321.0
+offset_bottom = 66.0
+text = "Weapon"

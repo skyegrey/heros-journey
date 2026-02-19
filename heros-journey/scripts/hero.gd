@@ -18,6 +18,7 @@ signal journey_completed
 
 func _process(delta):
 	if in_battle:
+		_process_battle(delta)
 		return
 	if is_on_journey:
 		if is_returning:
@@ -32,7 +33,7 @@ func _update_journey_progress(delta: float):
 		return
 	_update_journey_display()
 
-func _start_return_trip():
+func _start_return_journey():
 	is_returning = true
 	hero_journey_display.set_is_returning(true)
 
@@ -99,13 +100,40 @@ func _spawn_enemy():
 func _process_battle(delta: float):
 	enemy_character_resource.action_cooldown -= delta
 	hero_resource.action_cooldown -= delta
+	if hero_resource.action_cooldown <= 0:
+		_attack()
 	if enemy_character_resource.action_cooldown <= 0:
 		_enemy_character_attack()
-	if hero_resource.action_cooldown:
-		_attack()
+
 
 func _enemy_character_attack():
 	hero_journey_display.animate_enemy_attack()
+	enemy_character_resource.reset_action_cooldown()
+	hero_resource.take_damage(enemy_character_resource.attack)
+	hero_listing.update_hp_bar(hero_resource.current_hp, hero_resource.max_hp)
+	if hero_resource.current_hp <= 0:
+		_die()
 
 func _attack():
-	hero_journey_display.animate_player_attack()
+	hero_journey_display.animate_hero_attack()
+	hero_resource.reset_action_cooldown()
+	enemy_character_resource.take_damage(hero_resource.attack)
+	hero_journey_display.update_enemy_hp_bar(
+		enemy_character_resource.current_hp, enemy_character_resource.max_hp
+	)
+	if enemy_character_resource.current_hp <= 0:
+		_defeat_enemy_character()
+
+func _end_battle():
+	hero_journey_display.cleanup_battle()
+	in_battle = false
+
+func _die():
+	_end_battle()
+	hero_resource.current_hp = 1
+	hero_journey_display.hide_journey_display()
+	is_on_journey = false
+
+func _defeat_enemy_character():
+	_end_battle()
+	_start_return_journey()

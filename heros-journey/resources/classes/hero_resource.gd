@@ -11,6 +11,6 @@ func level_up():
 	max_hp += randi_range(5, 10)
 	current_hp = max_hp
 	
-	attack = randi_range(1, 3)
-	defense = randi_range(1, 3)
-	speed = randi_range(1, 3)
+	attack += randi_range(1, 3)
+	defense += randi_range(1, 3)
+	speed += randi_range(1, 3)

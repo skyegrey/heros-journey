@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://uc3dvfcsl3v6"]
+[gd_scene load_steps=12 format=3 uid="uid://uc3dvfcsl3v6"]
 
 [ext_resource type="Script" uid="uid://evgw8kbgblgv" path="res://scripts/main.gd" id="1_85g3d"]
 [ext_resource type="Script" uid="uid://bhhwwdbeajmsc" path="res://scripts/hero_manager.gd" id="1_tefeu"]
 [ext_resource type="Script" uid="uid://c0c4rdt2vxstb" path="res://scripts/guild_inventory.gd" id="2_choun"]
 [ext_resource type="Script" uid="uid://b174saxwm6qdg" path="res://scripts/tavern_page_control.gd" id="3_eb6dy"]
+[ext_resource type="Script" uid="uid://4fa1orvkjvrs" path="res://scripts/gear_page.gd" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://cjdybm28cjgrc" path="res://scenes/heros_list_control.gd" id="4_ya4ey"]
 [ext_resource type="Script" uid="uid://dagh8h87tx4if" path="res://scripts/guild_menu.gd" id="5_choun"]
 [ext_resource type="Script" uid="uid://dmadmw86m74bx" path="res://scripts/journey_display.gd" id="5_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://db81378wy6a6k" path="res://assets/weapons/weapon.png" id="8_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://c1qpxtkbwuj2v" path="res://assets/weapons/armor.png" id="9_eb6dy"]
 [ext_resource type="Script" uid="uid://cdx0y60apqr06" path="res://scripts/tavern.gd" id="11_ya4ey"]
 
 [node name="Main" type="Node2D"]
@@ -27,6 +30,7 @@ script = ExtResource("5_choun")
 
 [node name="TavernPageControl" type="Control" parent="UI/GuildMenu"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,7 +59,6 @@ offset_right = 352.0
 offset_bottom = 640.0
 
 [node name="GuildInfoPage" type="Control" parent="UI/GuildMenu"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -84,21 +87,45 @@ text = "256 rep"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GearPage" type="Control" parent="UI/GuildMenu"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_85g3d")
+
+[node name="GearCellGridContainer" type="GridContainer" parent="UI/GuildMenu/GearPage"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 233.0
+offset_right = 370.0
+offset_bottom = 524.0
+columns = 5
+
 [node name="TavernButton" type="Button" parent="UI/GuildMenu"]
 layout_mode = 0
-offset_left = 213.0
-offset_top = 738.0
-offset_right = 386.0
-offset_bottom = 777.0
+offset_left = 210.0
+offset_top = 673.0
+offset_right = 383.0
+offset_bottom = 712.0
 text = "Tavern"
 
 [node name="GuildHallButton" type="Button" parent="UI/GuildMenu"]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 740.0
-offset_right = 201.0
-offset_bottom = 777.0
+offset_left = 33.0
+offset_top = 676.0
+offset_right = 197.0
+offset_bottom = 713.0
 text = "Guild Hall"
+
+[node name="GearButton" type="Button" parent="UI/GuildMenu"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 733.0
+offset_right = 198.0
+offset_bottom = 770.0
+text = "Gear"
 
 [node name="HerosListControl" type="Control" parent="UI"]
 unique_name_in_owner = true
@@ -110,13 +137,12 @@ script = ExtResource("4_ya4ey")
 
 [node name="HerosListVBox" type="VBoxContainer" parent="UI/HerosListControl"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 14.0
+anchors_preset = -1
+anchor_left = 0.035
+anchor_right = 1.0350001
 offset_top = 1.0
-offset_right = 14.0
-offset_bottom = 1.0
+offset_right = -3.0517578e-05
+offset_bottom = 801.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -141,6 +167,8 @@ grow_vertical = 2
 [node name="GuildInventory" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_choun")
+weapon_texture = ExtResource("8_ya4ey")
+armor_texture = ExtResource("9_eb6dy")
 
 [node name="HeroManager" type="Node" parent="."]
 unique_name_in_owner = true
