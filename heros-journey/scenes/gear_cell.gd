@@ -21,6 +21,18 @@ func update_cell(_gear_resource: GearResource):
 	gear_resource = _gear_resource
 	item_sprite.visible = true
 	item_sprite.texture = gear_resource.gear_sprite
+	update_tooltip_text()
+
+func update_tooltip_text():
+	tooltip_text = gear_resource.weapon_type.capitalize() + '\n'
+	if gear_resource.bonus_max_hp > 0:
+		tooltip_text += str("\nMax HP: +", gear_resource.bonus_max_hp)
+	if gear_resource.bonus_attack > 0:
+		tooltip_text += str("\nAttack: +", gear_resource.bonus_attack)
+	if gear_resource.bonus_defense > 0:
+		tooltip_text += str("\nDefense: +", gear_resource.bonus_defense)
+	if gear_resource.bonus_speed > 0:
+		tooltip_text += str("\nSpeed: +", gear_resource.bonus_speed)
 
 func _get_drag_data(at_position: Vector2):
 	if gear_type:

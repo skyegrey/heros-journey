@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cicgpj1w488po"]
+[gd_scene load_steps=4 format=3 uid="uid://cicgpj1w488po"]
 
 [ext_resource type="Script" uid="uid://bpsk6x1cx8wyd" path="res://scenes/gear_cell.gd" id="1_7kpp4"]
 [ext_resource type="Texture2D" uid="uid://drsc8tm780oh1" path="res://assets/ui/item-cell-bg.png" id="1_288wa"]
+
+[sub_resource type="Theme" id="Theme_7kpp4"]
+default_font_size = 28
 
 [node name="GearCell" type="MarginContainer"]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
+theme = SubResource("Theme_7kpp4")
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
