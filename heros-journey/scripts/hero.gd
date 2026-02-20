@@ -7,14 +7,21 @@ class_name HeroNode extends Node
 
 @onready var journey_total_distance: float = 0
 @onready var journey_distance: float = 0
+@onready var journey_level: int = 1
 @onready var is_on_journey: bool = false
 @onready var in_battle: bool = false
 @onready var is_returning: bool = false
 @onready var awaiting_completion: bool = false
 
 @onready var enemy_character_resource: CharacterResource
+@onready var weapon_resource: GearResource
+@onready var armor_resource: GearResource
 
 signal journey_completed
+
+func _ready():
+	hero_listing.on_weapon_equiped.connect(_on_weapon_equiped)
+	hero_listing.on_armor_equiped.connect(_on_armor_equiped)
 
 func _process(delta):
 	if in_battle:
@@ -65,7 +72,7 @@ func _complete_journey():
 	awaiting_completion = false
 	hero_listing.reset_journey_button()
 	hero_journey_display.hide_journey_display()
-	journey_completed.emit(_calculate_journey_reward())
+	journey_completed.emit(journey_level)
 
 func _on_journey_button_pressed():
 	if awaiting_completion:
@@ -86,6 +93,7 @@ func _calculate_journey_reward():
 func set_hero_resource(_hero_resource: HeroResource):
 	hero_resource = _hero_resource
 	hero_listing.update_hp_bar(hero_resource.current_hp, hero_resource.max_hp)
+	hero_listing.update_stats(hero_resource)
 
 func _start_battle():
 	in_battle = true
@@ -137,3 +145,25 @@ func _die():
 func _defeat_enemy_character():
 	_end_battle()
 	_start_return_journey()
+
+func _on_weapon_equiped(_weapon_resource: GearResource):
+	if weapon_resource:
+		hero_resource.attack -= weapon_resource.bonus_attack
+		hero_resource.speed -= weapon_resource.bonus_speed
+	hero_resource.attack += _weapon_resource.bonus_attack
+	hero_resource.speed += _weapon_resource.bonus_speed
+	hero_listing.update_stats(hero_resource)
+	weapon_resource = _weapon_resource
+
+func _on_armor_equiped(_armor_resource: GearResource):
+	if armor_resource:
+		hero_resource.attack -= armor_resource.bonus_attack
+		hero_resource.speed -= armor_resource.bonus_speed
+	hero_resource.max_hp += _armor_resource.bonus_max_hp
+	hero_resource.defense += _armor_resource.bonus_defense
+	hero_listing.update_stats(hero_resource)
+	hero_listing.update_hp_bar(
+		hero_resource.current_hp, 
+		hero_resource.max_hp
+	)
+	armor_resource = _armor_resource

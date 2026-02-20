@@ -17,6 +17,7 @@
 script = ExtResource("1_85g3d")
 
 [node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1200.0

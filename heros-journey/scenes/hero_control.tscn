@@ -205,24 +205,28 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="MaxHPLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
 [node name="AttackLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
 [node name="DefenseLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 metadata/_edit_lock_ = true
 
 [node name="SpeedLabel" type="Label" parent="VBoxContainer/StatsPage/StatLabelContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 horizontal_alignment = 2
@@ -246,6 +250,7 @@ expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="ArmorCell" parent="VBoxContainer/GearPage" instance=ExtResource("5_xhorr")]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 75.0
 offset_top = 63.0
@@ -253,6 +258,7 @@ offset_right = 139.0
 offset_bottom = 127.0
 
 [node name="WeaponCell" parent="VBoxContainer/GearPage" instance=ExtResource("5_xhorr")]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 258.0
 offset_top = 65.0

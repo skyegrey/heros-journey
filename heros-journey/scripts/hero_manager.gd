@@ -22,8 +22,9 @@ func add_hero(recruitable_hero_resource: RecruitableHeroResource):
 	hero_node.journey_completed.connect(_on_hero_journey_completed)
 	add_child(hero_node)
 
-func _on_hero_journey_completed(gold_value: int):
-	guild_inventory.add_gold(gold_value)
+func _on_hero_journey_completed(journey_level: int):
+	guild_inventory.roll_journey_reward_gold(journey_level)
+	guild_inventory.roll_journey_reward_gear(journey_level)
 
 func create_hero_resource_from_recruitable_hero_resource(
 		recruitable_hero_resource: RecruitableHeroResource
